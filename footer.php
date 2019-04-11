@@ -134,6 +134,46 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     <script src="js/plugins/plugins.js"></script>
     <!-- Active js -->
     <script src="js/active.js"></script>
+    
+    <script>
+        ///////////////////API call for IP Location///////////////////////
+
+        $(document).ready(function() {
+        //console.log("fdxgfchvhjb")
+        $.ajax({        
+        url: "http://api.ipify.org?format=json" ,
+        //data: "message="+commentdata,
+        type: 'GET',
+        //dataType:'json',
+        success: function (result) {
+            var ip=result.ip;
+            console.log(result);
+            $.ajax({        
+        url: "http://www.geoplugin.net/json.gp?ip="+ip ,
+        //data: "message="+commentdata,
+        type: 'GET',
+        //dataType:'json',
+        success: function (response) {
+            
+            var location=JSON.parse(response).geoplugin_city;
+            var state=JSON.parse(response).geoplugin_region;
+            $("#location").text(location+"("+state+")");
+            
+        },
+        error: function(e){
+            console.log('Error: '+e);
+        }  
+        });
+            
+        },
+        error: function(e){
+            console.log('Error: '+e);
+        }  
+        });
+
+});
+    
+    </script>
 </body>
 
 </html>

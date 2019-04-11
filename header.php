@@ -18,7 +18,6 @@
     <link rel="stylesheet" href="style.css">
 
 </head>
-
 <body>
     <!-- ##### Header Area Start ##### -->
     <header class="header-area">
@@ -47,7 +46,11 @@
                                         <input type="search" name="search" class="form-control" placeholder="Search">
                                         <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
                                     </form>
-                                </div>
+                                </div>&nbsp &nbsp &nbsp
+                                <ul>
+                                <li><span><h6 style="color:white">Location Detected</h6></span></li>
+                                <li><center><h7 style="color:white"><span id="location"></span></h7></center></li>
+                                </ul>
                             </div>
                         </div>
                     </div>
