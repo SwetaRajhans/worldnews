@@ -1,5 +1,11 @@
   <?php
 
+// $service_url = 'https://newsapi.org/v2/top-headlines?language=en&country=in&apiKey=977be61614aa4c4482876c2e98bb645e';
+// $curl = curl_init($service_url);
+// $result = curl_exec($curl);
+// $resonse=json_decode($result);
+// //echo $resonse-->status;
+// /////echo $arr[0]
   include('header.php');
   ?>
 

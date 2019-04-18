@@ -208,6 +208,15 @@
                         </div>
                     </div>
                 </div>
+                <div class="card col-sm-4" >
+                <span><h3><b>Weather</b></h3></span>
+                    <div class="card-body">
+                        <h5 class="card-title">Temperature : <span id="temperature"></span>&deg C</h5>
+                        <h5 class="card-title">Wind Speed : <span id="wind_speed"></span>mph</h5>
+                        
+                        
+                    </div>
+                    </div>
 
                 <!-- Hero Add -->
                 

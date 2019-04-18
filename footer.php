@@ -148,6 +148,8 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
         success: function (result) {
             var ip=result.ip;
             console.log(result);
+
+            ////////////////////////////////////location api//////////////
             $.ajax({        
         url: "http://www.geoplugin.net/json.gp?ip="+ip ,
         //data: "message="+commentdata,
@@ -158,18 +160,45 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
             var location=JSON.parse(response).geoplugin_city;
             var state=JSON.parse(response).geoplugin_region;
             $("#location").text(location+"("+state+")");
+
+
+            /////////////weather forcast api///////
+            $.ajax({        
+        url: "http://api.apixu.com/v1/current.json?key=39dfc1b638ac470abcb140213191504&q="+location ,
+        //data: "message="+commentdata,
+        type: 'GET',
+        //dataType:'json',
+        success: function (response) {
+            
+            var temperature=response.current.temp_c;
+            var winds=response.current.wind_mph;
+            $("#temperature").text(temperature);
+            $("#wind_speed").text(winds);
+        
+           ///console.log(winds);
+        },
+        error: function(e){
+            console.log('Error: '+e);
+        }  
+        });
+        /////////////////closing weather forcast api///////////////
+
+
             
         },
         error: function(e){
             console.log('Error: '+e);
         }  
         });
+        /////// closing location api /////
             
         },
         error: function(e){
             console.log('Error: '+e);
         }  
         });
+
+        //////////////closing ip address api////////
 
 });
     
