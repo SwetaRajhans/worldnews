@@ -200,6 +200,45 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 
         //////////////closing ip address api////////
 
+        ////popular news api///////////////
+        $.ajax({        
+        url: "https://newsapi.org/v2/everything?q=popular news india&apiKey=977be61614aa4c4482876c2e98bb645e&pageSize=10" ,
+        //data: "message="+"commentdata,
+        type: 'GET',
+        //dataType:'json',
+        success: function (result) {
+           console.log(result);
+           var articles=result.articles;
+           
+           var divs = "";
+            for( var i = 0; i < 4;++i) {
+                var title=articles[i].title;
+                var image_url=articles[i].urlToImage;
+                var source=(articles[i].source).name;
+
+            divs +=  "<div class='col-12 col-md-6'>"
+                            +"<div class='single-blog-post style-3'>"
+                                +"<div class='post-thumb'>"
+                                    +"<a><img src='"+image_url+"'></a>"
+                               +" </div>"
+                               + "<div class='post-data'>"
+                                    +"<a class='post-catagory'>"+source+"</a>"
+                                    +"<a class='post-title'>"
+                                    +"<input type='text' name='pop_news_data' value='"+result+"' hidden></input>"
+                                       + "<h6>"+title+"</h6>"
+                                    +"</a>"
+                                +"</div>"
+                            +"</div>"
+                        +"</div>";
+            }
+            $("#popular_news").append(divs);
+           ///console.log(winds);
+        },
+        error: function(e){
+            console.log('Error: '+e);
+        }  
+        });
+
 });
     
     </script>
