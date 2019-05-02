@@ -140,6 +140,8 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 
         $(document).ready(function() {
         //console.log("fdxgfchvhjb")
+        var location;
+        var state;
         $.ajax({        
         url: "http://api.ipify.org?format=json" ,
         //data: "message="+commentdata,
@@ -157,8 +159,8 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
         //dataType:'json',
         success: function (response) {
             
-            var location=JSON.parse(response).geoplugin_city;
-            var state=JSON.parse(response).geoplugin_region;
+            location=JSON.parse(response).geoplugin_city;
+            state=JSON.parse(response).geoplugin_region;
             $("#location").text(location+"("+state+")");
 
 
@@ -232,12 +234,112 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
                         +"</div>";
             }
             $("#popular_news").append(divs);
+            
            ///console.log(winds);
         },
         error: function(e){
             console.log('Error: '+e);
         }  
         });
+
+        ////////////////////Recent News API/////////////////////////////
+        $.ajax({        
+        url: "https://newsapi.org/v2/everything?q=recent news india&apiKey=977be61614aa4c4482876c2e98bb645e&pageSize=10" ,
+        //data: "message="+"commentdata,
+        type: 'GET',
+        //dataType:'json',
+        success: function (result) {
+           console.log(result);
+           var articles=result.articles;
+           
+           var divs1 = "";
+            for( var i = 0; i < 5;++i) {
+                var title=articles[i].title;
+                var image_url=articles[i].urlToImage;
+                var source=(articles[i].source).name;
+
+            divs1 +=  "<div class='single-blog-post featured-post-2'>"
+                                +"<div class='post-thumb'>"
+                                    +"<a><img src='"+image_url+"'></a>"
+                                +"</div>"
+                                +"<div class='post-data'>"
+                                    +"<a class='post-catagory'>"+source+"</a>"
+                                    +"<div class='post-meta'>"
+                                        +"<a class='post-title'>" 
+                                        + "<h6>"+title+"</h6>"  
+                                       +" </a>" 
+                                   +" </div>"
+                                +"</div>"
+                            +"</div>"
+            }
+            var divs2 = "";
+            for( var i = 5; i < 10;++i) {
+                var title=articles[i].title;
+                var image_url=articles[i].urlToImage;
+                var source=(articles[i].source).name;
+
+            divs2 +=  "<div class='single-blog-post featured-post-2'>"
+                                +"<div class='post-thumb'>"
+                                    +"<a><img src='"+image_url+"'></a>"
+                                +"</div>"
+                                +"<div class='post-data'>"
+                                    +"<a class='post-catagory'>"+source+"</a>"
+                                    +"<div class='post-meta'>"
+                                        +"<a class='post-title'>"  
+                                        + "<h6>"+title+"</h6>" 
+                                       +" </a>" 
+                                   +" </div>"
+                                +"</div>"
+                            +"</div>"
+            }
+            $("#recent_news").append(divs1);
+            $("#recent_news2").append(divs2);
+           ///console.log(winds);
+        },
+        error: function(e){
+            console.log('Error: '+e);
+        }  
+        });
+
+        //////////////regional news api////////
+        $.ajax({        
+        url: "https://newsapi.org/v2/everything?q=west bengal&apiKey=977be61614aa4c4482876c2e98bb645e&pageSize=10" ,
+        //data: "message="+"commentdata,
+        type: 'GET',
+        //dataType:'json',
+        success: function (result) {
+           console.log(result);
+           var articles=result.articles;
+           
+           var divs2 = "";
+            for( var i = 0; i < 6;++i) {
+                var title=articles[i].title; 
+                var image_url=articles[i].urlToImage;
+                var source=(articles[i].source).name;
+                divs2+=  +"<div class='single-blog-post small-featured-post d-flex'>"
+                        +"<div class='post-thumb'>"
+                           +"<a><img src='"+image_url+"'></a>"
+                        +"</div>"
+                        +"<div class='post-data'>"
+                            +"<a class='post-catagory'>"+source+"</a>"
+                            +"<div class='post-meta'>"
+                                +"<a class='post-title'>"
+                                + "<h6>"+title+"</h6>"   
+                                +"</a>"
+                                
+                           +"</div>"
+                        +"</div>"
+                    +"</div>"
+            }
+            $("#regional_news").append(divs2);
+            
+           ///console.log(winds);
+        },
+        error: function(e){
+            console.log('Error: '+e);
+        }  
+        });
+
 
 });
     
