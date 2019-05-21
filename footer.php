@@ -141,7 +141,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
         $(document).ready(function() {
         //console.log("fdxgfchvhjb")
         var location;
-        var state;
+        var state="";
         $.ajax({        
         url: "http://api.ipify.org?format=json" ,
         //data: "message="+commentdata,
@@ -302,13 +302,15 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
         });
 
         //////////////regional news api////////
+        var stat="West Bengal"
         $.ajax({        
-        url: "https://newsapi.org/v2/everything?q=west bengal&apiKey=977be61614aa4c4482876c2e98bb645e&pageSize=10" ,
+        url: "https://newsapi.org/v2/everything?q="+stat+"&apiKey=977be61614aa4c4482876c2e98bb645e&pageSize=10" ,
         //data: "message="+"commentdata,
+       
         type: 'GET',
         //dataType:'json',
         success: function (result) {
-           console.log(result);
+           console.log(state);
            var articles=result.articles;
            
            var divs2 = "";
@@ -332,6 +334,86 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
                     +"</div>"
             }
             $("#regional_news").append(divs2);
+            
+           ///console.log(winds);
+        },
+        error: function(e){
+            console.log('Error: '+e);
+        }  
+        });
+
+           ////////////////world news api//////////
+
+            $.ajax({        
+        url: "https://newsapi.org/v2/everything?q=recent news&apiKey=977be61614aa4c4482876c2e98bb645e&pageSize=10" ,
+        //data: "message="+"commentdata,
+        type: 'GET',
+        //dataType:'json',
+        success: function (result) {
+           console.log(result);
+           var articles=result.articles;
+           
+           var divs2 = "";
+            for( var i = 0; i < 2;++i) {
+                var title=articles[i].title; 
+                var image_url=articles[i].urlToImage;
+                var source=(articles[i].source).name;
+                divs2+= +"<div class='single-blog-post'>"
+                                +"<div class='post-thumb'>"
+                                    +"<a><img src='"+image_url+"'></a>"
+                                +"</div>"
+                                +"<div class='post-data'>"
+                                    +"<a href='#' class='post-title'>"
+                                        +"<h6>"+title+"</h6>"
+                                    +"</a>"
+                                   +" <div class='post-meta>"
+                                        +"<div class='post-date'><a>"+source+"</a></div>"
+                                    +"</div>"
+                               +" </div>"
+                            +"</div>"
+                       }
+                       var divs3 = "";
+         for( var i = 2; i < 4;++i) {
+                var title=articles[i].title; 
+                var image_url=articles[i].urlToImage;
+                var source=(articles[i].source).name;
+                divs3+= +"<div class='single-blog-post'>"
+                                +"<div class='post-thumb'>"
+                                    +"<a><img src='"+image_url+"'></a>"
+                                +"</div>"
+                                +"<div class='post-data'>"
+                                    +"<a href='#' class='post-title'>"
+                                        +"<h6>"+title+"</h6>"
+                                    +"</a>"
+                                   +" <div class='post-meta>"
+                                        +"<div class='post-date'><a>"+source+"</a></div>"
+                                    +"</div>"
+                               +" </div>"
+                            +"</div>"
+                       } 
+             var divs4= "";    
+             for( var i = 4; i < 6;++i) {
+                var title=articles[i].title; 
+                var image_url=articles[i].urlToImage;
+                var source=(articles[i].source).name;
+                divs4+= +"<div class='single-blog-post'>"
+                                +"<div class='post-thumb'>"
+                                    +"<a><img src='"+image_url+"'></a>"
+                                +"</div>"
+                                +"<div class='post-data'>"
+                                    +"<a href='#' class='post-title'>"
+                                        +"<h6>"+title+"</h6>"
+                                    +"</a>"
+                                   +" <div class='post-meta>"
+                                        +"<div class='post-date'><a>"+source+"</a></div>"
+                                    +"</div>"
+                               +" </div>"
+                            +"</div>"
+                       }                         
+            $("#world_news").append(divs2);
+            $("#world_news1").append(divs3);
+            $("#world_news2").append(divs4);
+
             
            ///console.log(winds);
         },
